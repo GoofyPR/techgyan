@@ -61,7 +61,7 @@ function App() {
             <Route path='/login' element={<Login onLogin={handleLogin} />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/forum' element={<Forum searchQuery={searchQuery} />} />
-            <Route path='/forum1' element={<Forum1 />} />
+            <Route path='/forum1' element={<Forum1 searchQuery={searchQuery} />} />
             <Route path='/askquestion' element={<AskQuestion />} />
             <Route path='/Bookmarks' element={<Bookmarks />} />
             <Route path='/Settings' element={<Settings />} />

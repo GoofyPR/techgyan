@@ -3,7 +3,7 @@ import MyQuestions from './MyQuestions';
 import FullQuestionView from './FullQuestionView';
 import '../css/MyQuestions.css';
 
-const Forum1 = () => {
+const Forum1 = ({searchQuery}) => {
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
   const handleQuestionClick = (questionId) => {
@@ -17,7 +17,7 @@ const Forum1 = () => {
       {selectedQuestion ? (
         <FullQuestionView key={selectedQuestion} questionId={selectedQuestion} />
       ) : (
-        <MyQuestions onQuestionClick = {handleQuestionClick} />
+        <MyQuestions onQuestionClick = {handleQuestionClick} searchQuery={searchQuery} />
 
       )}
     </div>

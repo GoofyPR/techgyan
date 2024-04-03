@@ -5,7 +5,7 @@ import '../css/MyQuestions.css';
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { jwtDecode } from 'jwt-decode';
 
-const MyQuestions = ({ onQuestionClick }) => {
+const MyQuestions = ({ onQuestionClick, searchQuery }) => {
   const [questions, setQuestions] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [questionsPerPage] = useState(8);
@@ -41,19 +41,19 @@ const MyQuestions = ({ onQuestionClick }) => {
     navigate('/askquestion');
   };
 
-  // const filteredQuestions = questions.filter(
-  //   (question) =>
-  //     question.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-  //     question.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase()))
-  // );
+  const filteredQuestions = questions.filter(
+    (question) =>
+      question.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      question.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase()))
+  );
 
   const indexOfLastQuestion = currentPage * questionsPerPage;
   const indexOfFirstQuestion = indexOfLastQuestion - questionsPerPage;
-  const currentQuestions = questions.slice(indexOfFirstQuestion, indexOfLastQuestion);
+  const currentQuestions = filteredQuestions.slice(indexOfFirstQuestion, indexOfLastQuestion);
 
   const nextPage = () => {
     console.log('Next page clicked. Current page:', currentPage);
-    if (currentPage < Math.ceil(questions.length / questionsPerPage)) {
+    if (currentPage < Math.ceil(filteredQuestions.length / questionsPerPage)) {
         setCurrentPage(currentPage + 1);
     }
   };
@@ -88,13 +88,13 @@ const MyQuestions = ({ onQuestionClick }) => {
           </div>
           <div className="pagination">
             <div className="prev">
-              <GrFormPrevious className='page-icon' onClick={prevPage} disabled={currentPage === 1 || questions.length === 0} />
-              <button onClick={prevPage} disabled={currentPage === 1 || questions.length === 0}>Previous</button>
+              <GrFormPrevious className='page-icon' onClick={prevPage} disabled={currentPage === 1 || filteredQuestions.length === 0} />
+              <button onClick={prevPage} disabled={currentPage === 1 || filteredQuestions.length === 0}>Previous</button>
 
             </div>
             <div className="next">
-              <button className='next-btn' onClick={nextPage} disabled={currentPage === Math.ceil(questions.length / questionsPerPage) || questions.length === 0}>Next</button>
-              <GrFormNext className='page-icon' onClick={nextPage} disabled={currentPage === Math.ceil(questions.length / questionsPerPage) || questions.length === 0} />
+              <button className='next-btn' onClick={nextPage} disabled={currentPage === Math.ceil(filteredQuestions.length / questionsPerPage) || filteredQuestions.length === 0}>Next</button>
+              <GrFormNext className='page-icon' onClick={nextPage} disabled={currentPage === Math.ceil(filteredQuestions.length / questionsPerPage) || filteredQuestions.length === 0} />
 
             </div>
           </div>
