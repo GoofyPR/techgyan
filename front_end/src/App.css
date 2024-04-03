@@ -1,0 +1,21 @@
+.App {
+    display: flex;
+    
+}
+
+/* .content {
+    display: flex;
+    flex-grow: 1;
+
+}
+
+.content .sidebar-closed {
+    display: flex;
+    width: 400px;
+    min-height: 100vh;
+}
+
+.content .sidebar-open {
+    width: 400px;
+    min-height: 100vh;
+} */

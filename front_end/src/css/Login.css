@@ -1,0 +1,90 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.signin-container {
+    height: auto;
+    max-width: 400px;
+    
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: -5px -5px 5px #e6e6e6, 7px 7px 7px #d0d0d0;
+    margin-top: 20rem;
+}
+
+/* .signin-inner-container {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    box-shadow: -5px -5px 5px #e6e6e6, 7px 7px 7px #d0d0d0;
+} */
+
+.title-1 {
+    margin: 50px 1em 1em 1em;
+
+}
+.title-1 h3 {
+    font-size: 22px;
+}
+
+
+
+.signin-inner-form {
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+    /* width: 200px; */
+}
+
+.input-text-1 {
+    box-sizing: border-box;
+    outline: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    border: 1px solid #d0d0d0;
+    color: #2b2e32;
+    width: 250px;
+    font-size: 15px;
+}
+
+.email-username {
+    margin: 0 0 1.5em 0;
+}
+
+.password {
+    margin: 0 0 1.5em 0;
+}
+
+.btn-class {
+    /* margin-left: 6px;
+    margin-right: 6px; */
+    margin: 1em 0 38px 0;
+}
+
+.primary-btn-1 {
+    width: 100%;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    outline: none;
+    background-color: #2b2e32;
+    color: #55be8c;
+    transition: ease 0.3s;
+    cursor: pointer;
+    height: 40px;
+    font-size: 15px;
+    &:hover{
+        background-color: #55be8c;
+        color: #f4f5f7;
+    }
+    
+}
