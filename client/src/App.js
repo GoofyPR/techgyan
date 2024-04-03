@@ -14,6 +14,7 @@ import Signup from './components/Signup';
 import AskQuestion from './components/AskQuestion';
 import Forum1 from './components/Forum1';
 import Settings from './components/Settings';
+import RemoveProfile from './components/RemoveProfile';
 // import RemoveHeader from './components/RemoveHeader';
 
 function App() {
@@ -68,6 +69,9 @@ function App() {
             
 
           </Routes>
+          <RemoveProfile>
+
+          </RemoveProfile>
           <Profile />
         </div>
 
