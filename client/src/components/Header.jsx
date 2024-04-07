@@ -37,7 +37,11 @@ const Header = ({ isLoggedIn ,onToggleSidebar, onSearch }) => {
   }
 
   const handleSearchChange = (event) => {
-    setSearchInput(event.target.value);
+    const { value } = event.target;
+    setSearchInput(value);
+    if(value === '') {
+      onSearch('');
+    }
   }
 
   const handleSearchSubmit = () => {

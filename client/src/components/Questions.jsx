@@ -12,7 +12,7 @@ const Questions = ({ onQuestionClick, searchQuery }) => {
 
   useEffect(() => {
     fetchQuestions();
-  }, []);
+  }, [searchQuery]);
   
   const fetchQuestions = async () => {
     try {

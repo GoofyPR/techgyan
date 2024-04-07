@@ -35,7 +35,12 @@ function App() {
   
 
   const handleSearch = (query) => {
-    setSearchQuery(query);
+    if(query === ''){
+      setSearchQuery('');
+    } else {
+      setSearchQuery(query);
+
+    }
   };
 
   const toggleSidebar = () => {
