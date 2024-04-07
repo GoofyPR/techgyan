@@ -47,7 +47,7 @@ const FullQuestionView = ({ questionId }) => {
   return (
     <div className='full-question-container'>
       <div className="back-container">
-        <GrFormPrevious onClick={navBack} />
+        <GrFormPrevious className='back-icon' onClick={navBack} />
         <button className='back' onClick={navBack}>Back</button>
 
       </div>

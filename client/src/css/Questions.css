@@ -192,7 +192,29 @@
   
 }
 
-.back {
+.back-container {
     margin: 16px 16px 0 16px;
+    display: flex;
+    align-items: center;
+    
+    
+}
+.back {
+    padding: 5px 10px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: ease 0.3s;
+    &:hover {
+        color: #55be8c;
+    }
+}
+
+.back-icon {
+    cursor: pointer;
+    transition: ease 0.3s;
+    &:hover {
+        color: #55be8c;
+    }
 }
 
