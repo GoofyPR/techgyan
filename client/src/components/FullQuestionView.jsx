@@ -33,10 +33,15 @@ const FullQuestionView = ({ questionId }) => {
     
   }, [questionId]);
 
+  // const handleAnswerSubmit = async (newAnswer) => {
+  //   setAnswers([...answers, newAnswer]);
+    
+  // };
+
   const handleAnswerSubmit = async (newAnswer) => {
-    setAnswers([...answers, newAnswer]);
- 
+    setAnswers((prevAnswers) => [...prevAnswers, newAnswer]);
   };
+  
 
   const navBack = () => {
     // navigate('/forum');
@@ -66,7 +71,11 @@ const FullQuestionView = ({ questionId }) => {
             </div>
           ))}
           <p className='q-tags-1'>Tags: {question.tags.join(', ')}</p>
-          <p className='posted'>Posted by: {question.user.firstName} {question.user.lastName}</p>
+          {/* <p className='posted'>Posted by: {question.user.firstName} {question.user.lastName}</p> */}
+          {question.user && (
+            <p className='posted'>Posted by: {question.user.firstName} {question.user.lastName}</p>
+          )}
+
           
         </div>
       ) : (
@@ -75,22 +84,25 @@ const FullQuestionView = ({ questionId }) => {
 
 
       <div className='answers-container'>
-          <h3 className='answers-title'>Answers:</h3>
-          {answers.map((answer,index) => (
-              <div key={index} className='answer'>
-                  <p className='a-body'>{answer.body.split('\n').map((line, index) => (
-                      <React.Fragment key={index}>
-                          {line}<br />
-                      </React.Fragment>
-                  ))}</p>
-                  {answer.images.map((image, imgIndex) => (
-                      <div className="image-container" key={imgIndex}>
-                          <img src={`data:${image.fileType};base64,${image.data}`} alt="Answer" />
-                      </div>
-                  ))}
-                  <p className='posted'>Posted by: {answer.user.firstName} {answer.user.lastName}</p>
+        <h3 className='answers-title'>Answers:</h3>
+        {answers.map((answer,index) => (
+          <div key={index} className='answer'>
+            <p className='a-body'>{answer.body.split('\n').map((line, index) => (
+              <React.Fragment key={index}>
+                {line}<br />
+              </React.Fragment>
+            ))}</p>
+            {answer.images.map((image, imgIndex) => (
+              <div className="image-container" key={imgIndex}>
+                <img src={`data:${image.fileType};base64,${image.data}`} alt="Answer" />
               </div>
-          ))}
+            ))}
+            {answer.user && (
+              <p className='posted'>Posted by: {answer.user.firstName} {answer.user.lastName}</p>
+
+            )}
+          </div>
+        ))}
       </div>
       <Answer questionId={questionId} onAnswerSubmit={handleAnswerSubmit} />
 

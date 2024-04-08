@@ -275,7 +275,9 @@ const getQuestionByUserId = async(req,res) => {
 const getQuestionByQuestionId = async(req,res) => {
     try {
         const {id} = req.params;
-        const question = await Question.findById(id);
+        // const question = await Question.findById(id).populate('user','firstName lastName');
+        const question = await Question.findById(id).populate('user');
+
         if(!question) {
             return res.status(404).json({error: "Question not found."});
 
@@ -438,6 +440,7 @@ const createAnswer = async (req, res) => {
         console.log("Creating new answer:", { body, user: userId, question: questionId, images });
         const newAnswer = new Answer({ body, user: userId, question: questionId, images });
         await newAnswer.save();
+        await newAnswer.populate('user');
         console.log("New answer saved:", newAnswer);
         return res.status(200).json(newAnswer);
 
@@ -526,7 +529,7 @@ const getAllAnswers = async (req, res) => {
     try {
         const { questionId } = req.params;
 
-        const answers = await Answer.find({ question: questionId });
+        const answers = await Answer.find({ question: questionId }).populate('user');
         return res.status(200).json(answers);
     } catch (error) {
         console.error(error);
