@@ -35,7 +35,7 @@ route.get('/getqbyid/:id', getQuestionByQuestionId);
 route.get('/stats', getUserStats);
 route.get('/recentq/:userId', getRecentQuestionsByUserId);
 route.get('/recenta/:userId', getRecentAnswersByUserId);
-route.put('/user/:userId',updateUser);
+route.put('/user/:userId', upload.single('profilePicture'),updateUser);
 // route.get('/getAll', getAll);
 
   // Upload image route

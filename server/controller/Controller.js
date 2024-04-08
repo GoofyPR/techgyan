@@ -653,29 +653,54 @@ const getRecentAnswersByUserId = async (req, res) => {
     }
 };
 
-const updateUser = async (req, res) => {
+const updateUser = async(req,res) => {
     try {
         const { userId } = req.params;
         const { username, email, password, firstName, lastName, profilePicture } = req.body;
 
-        const updatedUser = await User.findByIdAndUpdate(userId, {
-            firstName,
-            lastName,
-            profilePicture,
-            updatedAt: new Date(),
-        }, { new: true });
+        console.log('req body', req.body); 
 
-        const updatedLogin = await Login.findOneAndUpdate({ _id: updatedUser.login }, {
-            username,
-            email,
-            password,
-            updatedAt: new Date(),
-        }, { new: true });
+        const updates = {};
+        if(firstName) updates.firstName = firstName;
+        if(lastName) updates.lastName = lastName;
+        if(profilePicture) updates.profilePicture = profilePicture;
+        // if (req.file && req.file.buffer) {
+        //     updates.profilePicture = {
+        //         fileName: req.file.originalname,
+        //         fileType: req.file.mimetype,
+        //         data: req.file.buffer.toString("base64")
+        //     };
+            
+        // }
+        updates.updatedAt = new Date();
 
-        res.status(200).json(updatedUser);
+        const user = await User.findById(userId);
+
+        if(!user) {
+            return res.status(404).json({error: "User not found"});
+        }
+
+        const login = await Login.findById(user.login);
+
+        if(!login) {
+            return res.status(404).json({error: "Login not found"});
+        }
+
+        if(username) login.username = username;
+        if(email) login.email = email;
+        if(password) {
+            const passwordHashed = await bcrypt.hash(password, 10);
+            login.password = passwordHashed;
+        }
+
+        await login.save();
+
+        const updatedUser = await User.findByIdAndUpdate(userId, { $set: updates }, { new: true });
+
+        return res.status(200).json(updatedUser);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        return res.status(500).json({error: "Internal server error"});
     }
 };
 

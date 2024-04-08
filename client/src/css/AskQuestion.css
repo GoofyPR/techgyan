@@ -138,6 +138,7 @@
 
 .jodit-editor-container {
     margin: 16px 16px 16px 16px;
+    z-index: 0;
 }
 
 .try-heading {

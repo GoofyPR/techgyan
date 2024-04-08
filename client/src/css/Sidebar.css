@@ -23,7 +23,7 @@
     min-height: 100%;
     background-color: #2b2e32;
     transition: left 0.3s; /* Add transition for smooth animation */
-    
+    z-index: 1;
 }
 
 .sidebar-container.show {
