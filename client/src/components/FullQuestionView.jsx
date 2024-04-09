@@ -6,6 +6,16 @@ import '../css/Answers.css';
 import { GrFormPrevious } from "react-icons/gr";
 // import { useNavigate } from 'react-router-dom';
 
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const month = monthNames[date.getMonth()];
+  const day = date.getDate();
+  const hours = date.getHours().toString().padStart(2, '0');
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+  return `${month} ${day} at ${hours}:${minutes}`;
+}
+
 const FullQuestionView = ({ questionId }) => {
   const [question, setQuestion] = useState(null);
   const [answers, setAnswers] = useState([]);
@@ -73,7 +83,7 @@ const FullQuestionView = ({ questionId }) => {
           <p className='q-tags-1'>Tags: {question.tags.join(', ')}</p>
           {/* <p className='posted'>Posted by: {question.user.firstName} {question.user.lastName}</p> */}
           {question.user && (
-            <p className='posted'>Posted by: {question.user.firstName} {question.user.lastName}</p>
+            <p className='posted'>Posted by: <span className='posted-style'> {question.user.firstName} {question.user.lastName} on {formatDate(question.createdAt)}</span></p>
           )}
 
           
@@ -98,7 +108,7 @@ const FullQuestionView = ({ questionId }) => {
               </div>
             ))}
             {answer.user && (
-              <p className='posted'>Posted by: {answer.user.firstName} {answer.user.lastName}</p>
+              <p className='posted'>Posted by: <span className='posted-style'>{answer.user.firstName} {answer.user.lastName} on {formatDate(answer.createdAt)}</span></p>
 
             )}
           </div>
