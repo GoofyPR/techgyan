@@ -11,6 +11,7 @@ import { FaUserCircle } from "react-icons/fa";
 const Header = ({ isLoggedIn ,onToggleSidebar, onSearch }) => {
   const [fixed, setFixed] = useState(false);
   const [searchInput, setSearchInput] = useState('');
+  const [showUserInfo, setShowUserInfo] = useState(false);
   // const prevIsLoggedIn = useRef(isLoggedIn);
 
   
@@ -48,6 +49,10 @@ const Header = ({ isLoggedIn ,onToggleSidebar, onSearch }) => {
     onSearch(searchInput);
   }
 
+  const handleUserIconClick = () => {
+    setShowUserInfo(!showUserInfo); 
+  }
+
   return (
     <>
       <nav className={`header-container ${fixed ? 'fixed' : ''}`}>
@@ -82,8 +87,12 @@ const Header = ({ isLoggedIn ,onToggleSidebar, onSearch }) => {
           {isLoggedIn ? (
             <div className='profile-icon'>
               {/* <img className='user-icon' src={profileIcon} alt="Profile" /> */}
-              <FaUserCircle className='user-icon' />
-
+              <FaUserCircle className='user-icon' onClick={handleUserIconClick} />
+              {showUserInfo && (
+                <div className="user-info-popup">
+                  <p>User information</p>
+                </div>
+              )}
             </div>
           ) : (
             <>
