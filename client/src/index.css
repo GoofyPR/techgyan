@@ -34,3 +34,19 @@ code {
     
   }
 }
+
+html {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+@media (max-width: 980px) {
+  html {
+    min-width: 980px;
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+}

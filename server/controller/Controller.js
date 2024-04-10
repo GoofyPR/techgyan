@@ -707,7 +707,25 @@ const updateUser = async(req,res) => {
     }
 };
 
+const getAllUserInfo = async (req, res) => {
+    try {
+        const { userId } = req.params;
+
+        const user = await User.findById(userId).populate('login');
+        if (!user) {
+            return res.status(404).json("User not found.");
+        }
+
+        const userData = user.toObject(); // Convert the Mongoose document to a plain JavaScript object
+
+        return res.status(200).json(userData);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: "Internal server error." });
+    }
+};
 
 
-module.exports = { signup, signin, createQuestion, signout, getAllQuestions, getQuestionByUserId, deleteQuestion, updateQuestion, createAnswer, deleteAnswer, updateAnswer, getAllAnswers, getAllAnswersByUserId, getQuestionByQuestionId, getUserStats, getRecentQuestionsByUserId, getRecentAnswersByUserId, updateUser };
+
+module.exports = { signup, signin, createQuestion, signout, getAllQuestions, getQuestionByUserId, deleteQuestion, updateQuestion, createAnswer, deleteAnswer, updateAnswer, getAllAnswers, getAllAnswersByUserId, getQuestionByQuestionId, getUserStats, getRecentQuestionsByUserId, getRecentAnswersByUserId, updateUser, getAllUserInfo };
 

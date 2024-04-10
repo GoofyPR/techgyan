@@ -1,6 +1,6 @@
 const express = require('express');
 const multer = require('multer');
-const { signup, signin, createQuestion, signout, getAllQuestions, getQuestionByUserId, deleteQuestion, updateQuestion, createAnswer, deleteAnswer, updateAnswer, getAllAnswers, getAllAnswersByUserId, getQuestionByQuestionId, getUserStats, getRecentQuestionsByUserId, getRecentAnswersByUserId, updateUser } = require('../controller/Controller.js');
+const { signup, signin, createQuestion, signout, getAllQuestions, getQuestionByUserId, deleteQuestion, updateQuestion, createAnswer, deleteAnswer, updateAnswer, getAllAnswers, getAllAnswersByUserId, getQuestionByQuestionId, getUserStats, getRecentQuestionsByUserId, getRecentAnswersByUserId, updateUser, getAllUserInfo } = require('../controller/Controller.js');
 
 // const storage = multer.memoryStorage();
 // const upload = multer({ storage });
@@ -36,6 +36,7 @@ route.get('/stats', getUserStats);
 route.get('/recentq/:userId', getRecentQuestionsByUserId);
 route.get('/recenta/:userId', getRecentAnswersByUserId);
 route.put('/user/:userId', upload.single('profilePicture'),updateUser);
+route.get('/userinfo/:userId', getAllUserInfo);
 // route.get('/getAll', getAll);
 
   // Upload image route
