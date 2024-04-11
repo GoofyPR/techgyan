@@ -2,6 +2,10 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    box-shadow: 1px 1px 6px 4px #d0d0d0 inset;
+    border-radius: 16px;
+    border: none;
+    overflow-y: auto;
 }
 
 .stats1 {
@@ -12,7 +16,7 @@
     height: auto;
     justify-content: space-around;
     margin-top: 66px;
-    
+    background: transparent;
 }
 
 .question-stats {
@@ -96,12 +100,14 @@
     height: 100px;
     margin-left: 33px;
     margin-right: 33px;
+    background: transparent;
 }
 
 .stats2 {
     display: flex;
     justify-content: space-evenly;
     margin-top: 66px;
+    background: transparent;
 }
 
 .recent-questions {

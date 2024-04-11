@@ -1,16 +1,10 @@
 .profile-container {
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    align-items: center;
-    min-height: 100vh;
-    /* width: 400px; */
-    max-width: 400px;
-    flex: 1;
-    background-color: #2b2e32;
-    color:  #55be8c;
+    min-height: 100%;
+    max-width: 56px;
+    min-width: 56px;
+    overflow: hidden;
 }
-
+/* 
 .my-tracker {
     background-color: transparent;
     display: flex;
@@ -25,7 +19,7 @@
 
 .my-tracker-title {
     background-color: transparent;
-    /* color: #55be8c; */
+    
     color: #f4f5f7;
     margin: 32px 32px 24px 32px;
     font-size: 20px;
@@ -49,8 +43,7 @@
 .profile-picture {
     background-color: transparent;
     margin: 0 24px 24px 24px;
-    /* width: 80px;
-    height: 80px; */
+  
 }
 
 .profile-picture img {
@@ -69,7 +62,7 @@
 }
 
 .my-tracker-btn {
-    /* margin: 0 32px 32px 32px; */
+    
     margin-left: 10px;
     background-color: #2b2e32;
     color: #55be8c;
@@ -86,11 +79,11 @@
         background-color: #55be8c;
         color: #f4f5f7;
     }
-    /* letter-spacing: 0.5px; */
+    
 }
 
 .settings {
-    /* margin: 0 32px 32px 32px; */
+    
     margin-right: 10px;
     background-color: #2b2e32;
     color: #55be8c;
@@ -113,6 +106,6 @@
     background-color: transparent;
     display: flex;
     margin: 0 32px 32px 32px;
-}
+} */
 
 

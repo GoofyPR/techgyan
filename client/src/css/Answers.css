@@ -1,6 +1,7 @@
 .answers-container {
     display: flex;
     flex-direction: column;
+    background: transparent;
 }
 .answers-title {
     margin: 16px;

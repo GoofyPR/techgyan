@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/AskQuestion.css';
 
@@ -13,6 +13,22 @@ function AskQuestion() {
     const [tags, setTags] = useState([]);
     // const [tryFilled, setTryFilled] = useState(false);
     // const [detailsFilled, setDetailsFilled] = useState(false);
+    const [height, setHeight] = useState(window.innerHeight);
+
+    useEffect(() => {
+        const handleResize = () => {
+          setHeight(window.innerHeight);
+        };
+    
+        window.addEventListener('resize', handleResize);
+    
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    
+    const dynamicHeight = height - 88;
  
   
     const titleRef = useRef(null);
@@ -251,8 +267,8 @@ function AskQuestion() {
 
 
     return(
-    
-        <form onSubmit={handleSubmit} encType="multipart/form-data" method='POST' ref={questionFormRef} className="ask-question-container">
+
+        <form onSubmit={handleSubmit} encType="multipart/form-data" method='POST' ref={questionFormRef} className="ask-question-container" style={{ height: `${dynamicHeight}px` }} >
             <div className="ask-question-heading">
                 <span className='ask-question-h1'>Ask a Question...</span>
                 <button className='questions-btn' onClick={navQuestions} >Questions</button>
