@@ -61,8 +61,8 @@
     font-size: 15px;
     transition: ease 0.5s;
     &:hover{
-        padding: 15px 25px;
-        font-size: 18px;
+        /* padding: 15px 25px;
+        font-size: 18px; */
         background-color: #f29f67;
     }
 }

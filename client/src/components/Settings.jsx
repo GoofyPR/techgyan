@@ -1,9 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import '../css/Settings.css';
 
 const Settings = () => {
+  const [height, setHeight] = useState(window.innerHeight);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setHeight(window.innerHeight);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const dynamicHeight = height - 88;
+
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -99,15 +115,23 @@ const Settings = () => {
     try {
       const res = await axios.put(`http://localhost:8000/api/user/${userId}`, formDataToSend, config);
       console.log('Update successful:', res.data);
-      
+      setFormData({
+        username: '',
+        email: '',
+        password: '',
+        firstName: '',
+        lastName: '',
+        profilePicture: ''
+      });
     } catch (error) {
       console.error('Update failed:', error);
       
     }
+    window.location.reload(false);
   };
 
   return (
-    <div className='settings-container'>
+    <div className='settings-container' style={{ height: `${dynamicHeight}px` }} >
       <h2>Settings</h2>
       <form encType='multipart/form-data' onSubmit={handleSubmit}>
         <label>Username:</label>

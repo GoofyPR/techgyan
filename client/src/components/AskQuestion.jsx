@@ -150,6 +150,11 @@ function AskQuestion() {
             alert('Please enter a title.');
             return;
         }
+
+        if (tags.length === 0) {
+            alert('Please enter at least one tag.');
+            return;
+        }
     
         const detailsText = detailsRef.current ? detailsRef.current.value : '';
         const tryText = tryRef.current ? tryRef.current.value : '';
@@ -158,7 +163,7 @@ function AskQuestion() {
         let body = `${detailsText}\n\n${tryText}`;
     
 
-        const tags = tagRef.current ? tagRef.current.value.split(',').map(tag => tag.trim()) : [];
+        const tagsArray = tagRef.current ? tagRef.current.value.split(',').map(tag => tag.trim()) : [];
     
 
 
@@ -198,7 +203,7 @@ function AskQuestion() {
         const formData = new FormData();
         formData.append('title', title);
         formData.append('body', sanitizedBody);
-        formData.append('tags', tags.join(','));
+        formData.append('tags', tagsArray.join(','));
 
         if (Array.isArray(images)) {
             images.forEach((image, index) => {
@@ -276,7 +281,7 @@ function AskQuestion() {
         
             <div className={`ask-question-title`}>
                 <div className="title-heading">
-                    <label htmlFor="title">Title</label>
+                    <label htmlFor="title">Title <span style={{color: "crimson", background: "transparent", fontSize: "16px"}} >*</span></label>
 
                 </div>
                 
@@ -338,7 +343,7 @@ function AskQuestion() {
         
             <div className={`ask-question-tags`}>
                 <div className="tags-heading">
-                    <label htmlFor="tags">Tags</label>
+                    <label htmlFor="tags">Tags <span style={{color: "crimson", background: "transparent", fontSize: "16px"}} >*</span></label>
                 </div>
 
                 <p className='tags-para'>Add tags to describe your question.</p>

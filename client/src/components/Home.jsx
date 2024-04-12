@@ -55,12 +55,12 @@ const Home = () => {
   useEffect(()=>{
     const fetchUserStats = async()=>{
       const token = localStorage.getItem('token');
-      if(token){
-        const decodedToken = jwtDecode(token);
-        // console.log(decodedToken.email);
-        setUserData(decodedToken);
+      // if(token){
+      //   const decodedToken = jwtDecode(token);
         
-      }
+      //   setUserData(decodedToken);
+        
+      // }
       const config = {
         headers: {
           Authorization: `Bearer ${token}`
@@ -105,12 +105,14 @@ const Home = () => {
         };
 
         try {
-          const [questionsResponse, answersResponse] = await Promise.all([
+          const [questionsResponse, answersResponse, userResponse] = await Promise.all([
             axios.get(`http://localhost:8000/api/recentq/${userId}`, config),
-            axios.get(`http://localhost:8000/api/recenta/${userId}`, config)
+            axios.get(`http://localhost:8000/api/recenta/${userId}`, config),
+            axios.get(`http://localhost:8000/api/userinfo/${userId}`,config) 
           ]);
           setRecentQuestions(questionsResponse.data);
           setRecentAnswers(answersResponse.data);
+          setUserData(userResponse.data);
             // const response = await axios.get(`http://localhost:8000/api/recentq/${userId}`, config);
             // setRecentQuestions(response.data);
         } catch (error) {
@@ -118,9 +120,9 @@ const Home = () => {
         }
     };
 
-    if (userData) {
-        fetchRecentQuestions();
-    }
+    // if (userData) {
+    // }
+    fetchRecentQuestions();
   }, [userData]);
 
   return (
