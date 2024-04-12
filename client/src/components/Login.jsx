@@ -5,6 +5,21 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = ({ onLogin }) => {
   const navigate = useNavigate();
+  const [height, setHeight] = useState(window.innerHeight);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setHeight(window.innerHeight);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const dynamicHeight = height - 88;
   
   const [formData, setFormData] = useState({
     emailOrUsername: '',
@@ -72,7 +87,7 @@ const Login = ({ onLogin }) => {
   };
 
   return(
-      <div className="login-container">
+      <div className="login-container" style={{ height: `${dynamicHeight}px` }} >
           <div className='signin-container'>
               
                   

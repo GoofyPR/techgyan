@@ -3,6 +3,7 @@
     flex-grow: 1;
     border-radius: 16px;
     border: none;
+    background: #e2eae6;
 }
 
 .question-container {

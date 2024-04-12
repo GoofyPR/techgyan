@@ -4,7 +4,15 @@
     flex-grow: 1;
     justify-content: flex-start;
     align-items: center;
-    min-height: 80vh;
+    box-shadow: 1px 1px 6px 4px #d0d0d0;
+    border-radius: 16px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    padding-right: 0;
+    position: relative;
+    border: none;
+    overflow-y: auto;
+    z-index: 2;
 }
 
 .signup-inner-container {
@@ -17,7 +25,7 @@
     align-items: center;
     border-radius: 20px;
     box-shadow: -5px -5px 5px #e6e6e6, 7px 7px 7px #d0d0d0;
-    margin-top: 20rem;
+    margin-top: 5rem;
 }
 
 .title {
