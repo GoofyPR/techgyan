@@ -2,10 +2,15 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    box-shadow: 1px 1px 6px 4px #d0d0d0 inset;
+    box-shadow: 1px 1px 6px 4px #d0d0d0;
     border-radius: 16px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    padding-right: 0;
+    position: relative;
     border: none;
     overflow-y: auto;
+    z-index: 2;
 }
 
 .stats1 {
@@ -92,6 +97,7 @@
     color: #2b2e32;
     font-size: 30px;
     font-weight: 540;
+    padding: 33px 0 33px 0;
 }
 
 .welcome-container {

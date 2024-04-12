@@ -263,7 +263,7 @@ const getAllQuestions = async(req,res) => {
 const getQuestionByUserId = async(req,res) => {
     try {
         const { userId } = req.params;
-        const questions = await Question.find({ user: userId });
+        const questions = await Question.find({ user: userId }).sort({ createdAt: -1 });
 
         return res.status(200).json(questions);
     } catch (error) {

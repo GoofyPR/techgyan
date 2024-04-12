@@ -36,6 +36,21 @@ const Home = () => {
   const [userData,setUserData] = useState(null);
   const [recentQuestions, setRecentQuestions] = useState([]);
   const [recentAnswers, setRecentAnswers] = useState([]);
+  const [height, setHeight] = useState(window.innerHeight);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setHeight(window.innerHeight);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const dynamicHeight = height - 88;
 
   useEffect(()=>{
     const fetchUserStats = async()=>{
@@ -109,7 +124,7 @@ const Home = () => {
   }, [userData]);
 
   return (
-    <div className='home-container'>
+    <div className='home-container' style={{ height: `${dynamicHeight}px` }} >
       <div className="welcome-container">
         {userData ? (
           <>

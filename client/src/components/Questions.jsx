@@ -8,7 +8,22 @@ const Questions = ({ onQuestionClick, searchQuery }) => {
   const [questions, setQuestions] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [questionsPerPage] = useState(8);
+  const [height, setHeight] = useState(window.innerHeight);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleResize = () => {
+      setHeight(window.innerHeight);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const dynamicHeight = height - 88;
 
   useEffect(() => {
     fetchQuestions();
@@ -58,7 +73,7 @@ const Questions = ({ onQuestionClick, searchQuery }) => {
   };
 
   return (
-    <div className="question-container">
+    <div className="question-container" style={{ height: `${dynamicHeight}px` }} >
       <div className="question-heading">
         <span className='question-h1'>All Questions</span>
         <button className='ask-question-btn' onClick={navAskQuestion}>Ask Question</button>

@@ -19,7 +19,22 @@ const formatDate = (dateString) => {
 const FullQuestionView = ({ questionId }) => {
   const [question, setQuestion] = useState(null);
   const [answers, setAnswers] = useState([]);
+  const [height, setHeight] = useState(window.innerHeight);
   // const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleResize = () => {
+      setHeight(window.innerHeight);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const dynamicHeight = height - 88;
 
   useEffect(() => {
     console.log("questionId in FullQuestionView:", questionId);
@@ -60,7 +75,7 @@ const FullQuestionView = ({ questionId }) => {
 
 
   return (
-    <div className='full-question-container'>
+    <div className='full-question-container' style={{ height: `${dynamicHeight}px` }} >
       <div className="back-container">
         <GrFormPrevious className='back-icon' onClick={navBack} />
         <button className='back' onClick={navBack}>Back</button>
