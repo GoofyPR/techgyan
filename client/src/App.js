@@ -1,4 +1,4 @@
-import React,{ Fragment, useState } from 'react';
+import React,{ Fragment, useState, useEffect } from 'react';
 // import { jwtDecode } from 'jwt-decode';
 import './App.css';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
@@ -22,6 +22,21 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
   // const [questions, setQuestions] = useState([]);
+
+  useEffect(() => {
+    function setHtmlHeight() {
+      const bodyHeight = document.body.scrollHeight;
+      document.documentElement.style.height = bodyHeight + 'px';
+    }
+
+    setHtmlHeight();
+
+    window.addEventListener('resize', setHtmlHeight);
+
+    // return () => {
+    //   window.removeEventListener('resize', setHtmlHeight);
+    // };
+  }, []);
 
   const handleLogin = () => {
     

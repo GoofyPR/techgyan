@@ -65,3 +65,11 @@
         color: #f4f5f7;
     }
 }
+
+.jodit-editor-container {
+    margin: 16px 16px 16px 16px;
+    z-index: 0;
+    max-width: 100%;
+    width: auto;
+    word-wrap: break-word;
+}
